@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Schedule</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Patient Schedule</h1>
+    <table id="scheduleTable">
+        <thead>
+            <tr>
+                <th>Patient Name</th>
+                <th>Age</th>
+                <th>Doctor</th>
+                <th>Schedule Date</th>
+                <th>Schedule Time</th>
+                <th>Approve</th>
+                <th>Cancel</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data will be populated here -->
+        </tbody>
+    </table>
+
+    <script>
+        function fetchData() {
+            fetch('Doctorpage.php')
+                .then(response => response.json())
+                .then(data => {
+                    const tableBody = document.querySelector('#scheduleTable tbody');
+                    tableBody.innerHTML = '';
+
+                    if (data.length === 0) {
+                        const row = document.createElement('tr');
+                        const cell = document.createElement('td');
+                        cell.colSpan = 8;
+                        cell.textContent = 'No records found';
+                        row.appendChild(cell);
+                        tableBody.appendChild(row);
+                        return;
+                    }
+
+                    data.forEach(item => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${item.patient_name}</td>
+                            <td>${item.age}</td>
+                            <td>${item.doctor}</td>
+                            <td>${item.schedule_date}</td>
+                            <td>${item.schedule_time}</td>
+                            <td><input type="checkbox" name="approve${item.id}"></td>
+                            <td><input type="checkbox" name="cancel${item.id}"></td>
+                            <td><button type="button" onclick="updateStatus('approve${item.id}', 'cancel${item.id}')">Update</button></td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                });
+        }
+
+        function updateStatus(approveName, cancelName) {
+            const approveCheckbox = document.querySelector(`input[name="${approveName}"]`);
+            const cancelCheckbox = document.querySelector(`input[name="${cancelName}"]`);
+            const status = approveCheckbox.checked ? "Approved" : cancelCheckbox.checked ? "Cancelled" : "Pending";
+            alert(`Status updated to: ${status}`);
+        }
+
+        document.addEventListener('DOMContentLoaded', fetchData);
+    </script>
+</body>
+</html>

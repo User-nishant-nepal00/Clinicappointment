@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctors of Jai Shree Pashupati Clinic</title>
+    <link rel="stylesheet" type="css/text" href="Navbar.css">
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    
+    h1 {
+        text-align: center;
+        color: #007bff;
+    }
+    
+    p {
+        font-size: 18px;
+        line-height: 1.6;
+        color: #333;
+        text-align: justify;
+        margin-bottom: 20px;
+    }
+    
+    button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-top: 20px;
+    }
+    </style>
+    <link rel="stylesheet" type="text/css" href="navbar.css">
+</head>
+<body onload="loadNavbar()"></body>
+    <script>
+        function loadNavbar() {
+            fetch('navbar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-container').innerHTML = data;
+                });
+        }
+    </script>
+    <div id="navbar-container"></div>
+    <div class="container">
+        <h1>Doctors of Jai Shree Pashupati Clinic</h1>
+        <p>
+            Doctors at Pashupati Clinic are dedicated healthcare professionals committed to providing exemplary medical care to patients. With a diverse range of specialties and extensive clinical experience, the doctors at Pashupati Clinic offer comprehensive services to address various health concerns. Whether it's routine check-ups, diagnosis and treatment of illnesses, or management of chronic conditions, these doctors prioritize patient well-being and strive for optimal health outcomes. Known for their expertise, empathy, and personalized approach to care, the doctors at Pashupati Clinic create a supportive environment where patients feel heard, valued, and empowered in their healthcare journey. Collaborating closely with other members of the healthcare team, they ensure seamless coordination and holistic management of patients' medical needs. With a steadfast commitment to excellence and a passion for healing, the doctors at Pashupati Clinic uphold the highest standards of medical practice, earning the trust and respect of the community they serve.
+        </p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Appointment Form</title>
+<link rel="stylesheet" type="text/css" href="Appointment.css">
+</head>
+<body>
+<div class="container">
+  <h2>Appointment Form</h2>
+  <form id="appointmentForm" action="Appointment.php" method="post">
+    <label for="patientName">Patient Name:</label>
+    <input type="text" id="patientName" name="patientName" required>
+    
+    <label for="age">Age:</label>
+    <input type="number" id="age" name="age" required> 
+    
+    <label for="doctor">Doctor of Choice:</label>
+    <select id="doctor" name="doctor" required>
+      <option value="">Select Doctor</option>
+      <option value="Dr.giri">Dr.giri</option>
+      <option value="Dr.raut">Dr.raut</option>
+      <option value="Dr.waiba">Dr.waiba</option>
+    </select>
+    
+    <label for="scheduleDate">Schedule Date:</label>
+    <input type="date" id="scheduleDate" name="scheduleDate" required>
+    
+    <label for="scheduleTime">Schedule Time:</label>
+    <div id="timeSlots"></div>
+    <input type="hidden" id="selectedTime" name="scheduleTime" required>
+    
+    <input type="submit" value="Submit">
+  </form>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const startTime = 10;
+  const endTime = 16;
+  const timeSlots = document.getElementById("timeSlots");
+
+  for (let hour = startTime; hour <= endTime; hour++) {
+    for (let minute = 0; minute < 60; minute += 30) {
+      const time = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
+      const timeSlot = document.createElement("div");
+      timeSlot.className = "time-slot";
+      timeSlot.textContent = time;
+
+      timeSlot.addEventListener("click", function() {
+        const selected = document.querySelector(".time-slot.selected");
+        if (selected) {
+          selected.classList.remove("selected");
+        }
+        this.classList.add("selected");
+        document.getElementById("selectedTime").value = this.textContent;
+      });
+
+      timeSlots.appendChild(timeSlot);
+    }
+  }
+
+  document.getElementById("appointmentForm").addEventListener("submit", function(event) {
+    const selectedTimeSlot = document.querySelector(".time-slot.selected");
+    if (!selectedTimeSlot) {
+      event.preventDefault();
+      alert("Please select a time slot.");
+    }
+  });
+});
+</script>
+</body>
+</html>

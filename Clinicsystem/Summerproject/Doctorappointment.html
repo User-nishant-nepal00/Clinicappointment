@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jai shree pashupati clinic</title>
+<link rel="stylesheet" type="text/css" href="Doctorappointment.css">
+<link rel="stylesheet" type="text/css" href="navbar.css">
+</head>
+<body>
+    <header>
+    <nav class="navbar">
+        <ul>
+        <a href="Doctorappointment.html">Home</a>
+        <a href="Aboutus.html">About Us</a>
+        <a href="Services.html">Services</a>
+        <a href="Doctor.html">Doctor Info</a>
+        </ul>
+    </nav>
+    </header>
+    <footer>
+        <h3>copyright All rights are reserverd</h3>
+    </footer>
+    <h1>Jai shree pashupati clinic</h1>
+    <div class="main-container">
+        <div class="container">
+            <h2>Doctor Login</h2>
+            <form action="Doctorlogin.php" method="post">
+                <label for="doc_username">Username:</label>
+                <input type="text" id="doc_username" name="doc_username" required>
+        
+                <label for="doc_password">Password:</label>
+                <input type="password" id="doc_password" name="doc_password" required>
+        
+                <input type="submit" value="Login">
+            </form>
+        </div>
+
+        <div class="container">
+            <h2>Patient Login</h2>
+            <form action="Login.php" method="post">
+                <label for="pat_username">Username:</label>
+                <input type="text" id="pat_username" name="pat_username" required>
+
+                <label for="pat_password">Password:</label>
+                <input type="password" id="pat_password" name="pat_password" required>
+
+                <input type="submit" value="Login" >
+                <input type="button" value="Register" onclick="location.href='Registration.html'">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
